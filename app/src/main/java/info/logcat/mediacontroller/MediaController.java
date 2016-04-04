@@ -150,12 +150,14 @@ public class MediaController extends RelativeLayout {
             if (view.getX() == downX) {
                 onControlBtnClick();
             } else {
-                if (listener != null) {
-                    if (view.getLeft() == leftEdge) {  // 捕获上一曲操作
-                        isPlaying = true;   // 切曲操作自动播放
+                if (view.getLeft() == leftEdge) {  // 捕获上一曲操作
+                    isPlaying = true;   // 切曲操作自动播放
+                    if (listener != null) {
                         listener.onPrevious();
-                    } else if (view.getLeft() == rightEdge) {  // 捕获下一曲操作
-                        isPlaying = true;   // 切曲操作自动播放
+                    }
+                } else if (view.getLeft() == rightEdge-view.getWidth()) {  // 捕获下一曲操作
+                    isPlaying = true;   // 切曲操作自动播放
+                    if (listener != null) {
                         listener.onNext();
                     }
                 }
